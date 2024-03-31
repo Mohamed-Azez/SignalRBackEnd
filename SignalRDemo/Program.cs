@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+using SignalRDemo;
 using SignalRDemo.HubConfig;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +17,7 @@ builder.Services.AddSignalR(options =>
 {
     options.EnableDetailedErrors = true;
 });
+builder.Services.AddDbContext<SignalrContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("MyConnection")));
 
 ///////////////////////
 
